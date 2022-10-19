@@ -2,8 +2,8 @@ import React from 'react';
 
 const RQsuperHeroPage = () => {
     return (
-        <div>
-            <h1 className='text-center'>React Query data fetching</h1>
+        <div className='container'>
+            <h1 className='text-center mt-5'>React Query data fetching</h1>
         </div>
     );
 };
