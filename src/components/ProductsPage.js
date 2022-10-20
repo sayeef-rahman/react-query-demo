@@ -22,8 +22,8 @@ const ProductsPage = () => {
         setIsLoading(false);
       });
   }, []);
-  if(error){
-    return <h1 className="text-center mt-5">Server Side Error</h1>
+  if (error) {
+    return <h1 className="text-center mt-5">Server Side Error</h1>;
   }
 
   if (isLoadin) {
@@ -31,12 +31,15 @@ const ProductsPage = () => {
   }
   return (
     <div className="container">
-      <h1 className="text-center mt-5">Tradition Data Fetching (Products)</h1>
+      <h1 className="text-center my-5">Tradition Data Fetching (Products)</h1>
       {products?.map((product) => {
         const { id, title, price } = product;
         return (
-          <div key={id} className="my-2">
-            {id} - {title} [price - {price} BDT]
+          <div key={id} className="my-2 d-flex justify-content-between bg-primary p-4 text-white ">
+            <p className="m-0">
+              {id} - {title}
+            </p>
+            <p className="m-0">Price - {price} BDT</p>
           </div>
         );
       })}
