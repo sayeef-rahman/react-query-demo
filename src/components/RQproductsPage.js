@@ -1,10 +1,11 @@
 import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const RQproductsPage = () => {
   const getSuperHeroes = () => {
-    return axios.get("http://localhost:4000/products");
+    return axios.get(`${baseUrl}/products`);
   };
   const { isloading, data } = useQuery("super-hero", getSuperHeroes);
   console.log("query", data);

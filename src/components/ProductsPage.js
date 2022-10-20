@@ -4,10 +4,11 @@ const ProductsPage = () => {
   const [isLoadin, setIsLoading] = useState(true);
   const [products, setProducts] = useState();
   const [error, setError] = useState();
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/products")
+      .get(`${baseUrl}/products`)
       .then((res) => {
         if (res.status === 200) {
           setProducts(res?.data);
@@ -35,7 +36,10 @@ const ProductsPage = () => {
       {products?.map((product) => {
         const { id, title, price } = product;
         return (
-          <div key={id} className="my-2 d-flex justify-content-between bg-primary p-4 text-white ">
+          <div
+            key={id}
+            className="my-2 d-flex justify-content-between bg-primary p-4 text-white "
+          >
             <p className="m-0">
               {id} - {title}
             </p>
