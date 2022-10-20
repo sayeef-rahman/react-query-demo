@@ -1,32 +1,61 @@
 import React from "react";
 import { useQuery } from "react-query";
 import axios from "axios";
-const baseUrl = process.env.REACT_APP_BASE_URL;
+const baseUrl = process.env.REACT_APP_BASE_URL; //base url set in .env
 
 const RQproductsPage = () => {
   const getSuperHeroes = () => {
-    console.log(`${baseUrl}/products`);
     return axios.get(`${baseUrl}/products`);
-    // return axios.get("http://localhost:4000/products")
   };
-  const { isloading, data, isError, error, isLoadingError } = useQuery(
-    "super-hero",
-    getSuperHeroes
-  );
-  console.log("query", data);
+  const onSuccess = () =>{
+    console.log("fetching success!");
+  }
+  const onError = () =>{
+    console.log("fetching error!");
+  }
+  const {
+    isloading,
+    data,
+    isError,
+    error,
+    isLoadingError,
+    refetch,
+    isFetching,
+  } = useQuery("products", getSuperHeroes, {
+    cacheTime: 5000, //by default 5 min
+    staleTime: 0, //default value
+    refetchOnMount: false, //default value true best option true/false/"always"
+    refetchOnWindowFocus: true, //default value true/false/"always"
+    refetchInterval: 2000, //default value true/false/ time in milisecond
+    enabled: false, // fetch only on button click.othger wise it will fetch data on component mount. other option will work asusual
+    onSuccess, //onSuccess: onSuccess because the key & value (function) are same. called shorthand
+    onError: onError //onSuccess: onSuccess because the key & value (function) are same. called shorthand
+  });
   const products = data?.data;
 
-  if (isloading) {
+  if (isloading || isFetching) {
     return <h1>Loading.....</h1>;
   }
 
   if (isError || error || isLoadingError) {
-    return <h1 className="text-center mt-5">{error}</h1>;
+    if (isError) {
+      return <h1 className="text-center mt-5">{isError}</h1>;
+    } else if (error) {
+      return <h1 className="text-center mt-5">{error}</h1>;
+    } else {
+      return <h1 className="text-center mt-5">{isLoadingError}</h1>;
+    }
   }
 
   return (
     <div className="container">
       <h1 className="text-center my-5">RQ Data Fetching (Products)</h1>
+      <button
+        onClick={refetch}
+        className="text-center btn btn-primary mx-auto my-2"
+      >
+        Fetch Data
+      </button>
       {products?.map((product) => {
         const { id, title, price } = product;
         return (
