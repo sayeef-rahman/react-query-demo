@@ -22,6 +22,9 @@ const ProductsPage = () => {
         setIsLoading(false);
       });
   }, []);
+  if(error){
+    return <h1 className="text-center mt-5">Server Side Error</h1>
+  }
 
   if (isLoadin) {
     return <h1 className="text-center mt-5"> Loading.....</h1>;

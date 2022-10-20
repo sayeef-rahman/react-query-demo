@@ -15,8 +15,8 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/superheroes" element={<ProductsPage />} />
-          <Route path="/query-superheroes" element={<RQproductsPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/query-products" element={<RQproductsPage />} />
         </Routes>
         <ReactQueryDevtools initialIsOpen={false} position={"bottom-left"} />
       </QueryClientProvider>
