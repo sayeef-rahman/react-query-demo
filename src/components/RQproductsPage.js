@@ -5,14 +5,22 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const RQproductsPage = () => {
   const getSuperHeroes = () => {
+    console.log(`${baseUrl}/products`);
     return axios.get(`${baseUrl}/products`);
   };
-  const { isloading, data } = useQuery("super-hero", getSuperHeroes);
-  console.log("query", data);
+  const { isloading, data, isError, error, isLoadingError } = useQuery(
+    "super-hero",
+    getSuperHeroes()
+  );
+  // console.log("query", data);
   const products = data?.data;
 
   if (isloading) {
     return <h1>Loading.....</h1>;
+  }
+
+  if (isError || error || isLoadingError) {
+    return <h1 className="text-center mt-5">{error}</h1>;
   }
 
   return (

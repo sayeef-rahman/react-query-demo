@@ -10,21 +10,16 @@ const ProductsPage = () => {
     axios
       .get(`${baseUrl}/products`)
       .then((res) => {
-        if (res.status === 200) {
-          setProducts(res?.data);
-          setIsLoading(false);
-        } else {
-          alert("server error");
-          setProducts(undefined);
-        }
+        setProducts(res?.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         setError(error.message);
         setIsLoading(false);
       });
-  }, []);
+  }, [baseUrl]);
   if (error) {
-    return <h1 className="text-center mt-5">Server Side Error</h1>;
+    return <h1 className="text-center mt-5">{error}</h1>;
   }
 
   if (isLoadin) {
