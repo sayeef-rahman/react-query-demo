@@ -7,12 +7,13 @@ const RQproductsPage = () => {
   const getSuperHeroes = () => {
     console.log(`${baseUrl}/products`);
     return axios.get(`${baseUrl}/products`);
+    // return axios.get("http://localhost:4000/products")
   };
   const { isloading, data, isError, error, isLoadingError } = useQuery(
     "super-hero",
-    getSuperHeroes()
+    getSuperHeroes
   );
-  // console.log("query", data);
+  console.log("query", data);
   const products = data?.data;
 
   if (isloading) {
