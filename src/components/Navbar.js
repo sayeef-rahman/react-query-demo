@@ -14,12 +14,12 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/superheroes">
-              SuperHeroes
+              Products
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/query-superheroes">
-              RQ SuperHeroes
+              RQ Products
             </Link>
           </li>
         </ul>

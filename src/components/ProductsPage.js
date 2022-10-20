@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-const SuperHeroPage = () => {
+const ProductsPage = () => {
   const [isLoadin, setIsLoading] = useState(true);
   const [products, setProducts] = useState();
 
@@ -15,7 +15,10 @@ const SuperHeroPage = () => {
       }
     });
   }, []);
-  console.log(products);
+  
+  if(isLoadin){
+    return <h1 className="text-center mt-5"> Loading.....</h1>
+  }
   return (
     <div className="container">
       <h1 className="text-center mt-5">Tradition Data Fetching (Products)</h1>
@@ -27,4 +30,4 @@ const SuperHeroPage = () => {
   );
 };
 
-export default SuperHeroPage;
+export default ProductsPage;
