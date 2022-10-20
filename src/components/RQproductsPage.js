@@ -10,7 +10,9 @@ const RQproductsPage = () => {
   console.log("query", data);
   const products = data?.data;
 
-  if()
+  if(isloading){
+    return <h1>Loading.....</h1>;
+  }
 
   return (
     <div className="container">
