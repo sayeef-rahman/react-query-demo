@@ -67,6 +67,7 @@ const RQproductsPage = () => {
               {id} - {title}
             </p>
             <p className="m-0">Price - {price} $</p>
+            <p className="m-0">Price - {price} $</p>
           </div>
         );
       })}
