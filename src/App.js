@@ -25,7 +25,7 @@ function App() {
             element={<ProductDetails />}
           />
           <Route path="/parallal-query-product" element={<RQParallal />} />
-          <Route path="/dynamic-parallal-query-product" element={<RQDynamicParallal />} />
+          <Route path="/dynamic-parallal-query-product" element={<RQDynamicParallal ids={[1,2]} />} />
         </Routes>
         <ReactQueryDevtools initialIsOpen={false} position={"bottom-left"} />
       </QueryClientProvider>
