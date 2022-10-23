@@ -29,8 +29,16 @@ const RQproductsPage = () => {
     refetchInterval: 2000, //default value true/false/ time in milisecond
     enabled: false, // fetch only on button click.othger wise it will fetch data on component mount. other option will work asusual
     onSuccess, //onSuccess: onSuccess because the key & value (function) are same. called shorthand
-    onError: onError //onSuccess: onSuccess because the key & value (function) are same. called shorthand
+    onError: onError, //onSuccess: onSuccess because the key & value (function) are same. called shorthand
+    // select is ues to transform / filters data & after return it assigns  data in destructured data.
+    // select: (data)=>{
+    //   const productNames = data.data.map((name)=> name.title);
+    //   console.log(productNames);
+    //   return productNames;
+    // },
   });
+  // const names = data;
+  console.log("data: ",data);
   const products = data?.data;
 
   if (isloading || isFetching) {
@@ -66,7 +74,6 @@ const RQproductsPage = () => {
             <p className="m-0">
               {id} - {title}
             </p>
-            <p className="m-0">Price - {price} $</p>
             <p className="m-0">Price - {price} $</p>
           </div>
         );
