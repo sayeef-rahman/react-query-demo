@@ -27,6 +27,11 @@ const Navbar = () => {
               RQ Prallal
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/dynamic-parallal-query-product">
+              RQ Dynamic Prallal
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>

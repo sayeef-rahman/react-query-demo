@@ -7,6 +7,7 @@ import RQproductsPage from "./components/RQproductsPage";
 import ProductsPage from "./components/ProductsPage";
 import ProductDetails from "./components/ProductDetails";
 import RQParallal from "./components/RQParallal";
+import RQDynamicParallal from "./components/RQDynamicParallal";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ function App() {
             element={<ProductDetails />}
           />
           <Route path="/parallal-query-product" element={<RQParallal />} />
+          <Route path="/dynamic-parallal-query-product" element={<RQDynamicParallal />} />
         </Routes>
         <ReactQueryDevtools initialIsOpen={false} position={"bottom-left"} />
       </QueryClientProvider>
