@@ -1,44 +1,41 @@
 import React from "react";
 import { useQuery } from "react-query";
-import axios from "axios";
-const baseUrl = process.env.REACT_APP_BASE_URL; //base url set in .env
+import { useProductsData } from "../hooks/useProductsData";
+
 
 const RQproductsPage = () => {
-  const getSuperHeroes = () => {
-    return axios.get(`${baseUrl}/products`);
-  };
-  const onSuccess = () =>{
+  const onSuccess = () => {
     console.log("fetching success!");
-  }
-  const onError = () =>{
+  };
+
+  const onError = () => {
     console.log("fetching error!");
-  }
-  const {
-    isloading,
-    data,
-    isError,
-    error,
-    isLoadingError,
-    refetch,
-    isFetching,
-  } = useQuery("products", getSuperHeroes, {
-    cacheTime: 5000, //by default 5 min
-    staleTime: 0, //default value
-    refetchOnMount: false, //default value true best option true/false/"always"
-    refetchOnWindowFocus: true, //default value true/false/"always"
-    refetchInterval: 2000, //default value true/false/ time in milisecond
-    enabled: false, // fetch only on button click.othger wise it will fetch data on component mount. other option will work asusual
-    onSuccess, //onSuccess: onSuccess because the key & value (function) are same. called shorthand
-    onError: onError, //onSuccess: onSuccess because the key & value (function) are same. called shorthand
-    // select is ues to transform / filters data & after return it assigns  data in destructured data.
-    // select: (data)=>{
-    //   const productNames = data.data.map((name)=> name.title);
-    //   console.log(productNames);
-    //   return productNames;
-    // },
-  });
-  // const names = data;
-  console.log("data: ",data);
+  };
+  const {isloading, error, isError, data, refetch, isFetching, isLoadingError} = useProductsData(onSuccess, onError);
+  // const {
+  //   isloading,
+  //   data,
+  //   isError,
+  //   error,
+  //   isLoadingError,
+  //   refetch,
+  //   isFetching,
+  // } = useQuery("products", getProducts, {
+  //   cacheTime: 5000, //by default 5 min
+  //   staleTime: 0, //default value
+  //   refetchOnMount: false, //default value true best option true/false/"always"
+  //   refetchOnWindowFocus: true, //default value true/false/"always"
+  //   refetchInterval: 2000, //default value true/false/ time in milisecond
+  //   enabled: false, // fetch only on button click.othger wise it will fetch data on component mount. other option will work asusual
+  //   onSuccess, //onSuccess: onSuccess because the key & value (function) are same. called shorthand
+  //   onError: onError, //onSuccess: onSuccess because the key & value (function) are same. called shorthand
+  //   // select is ues to transform / filters data & after return it assigns  data in destructured data.
+  //   // select: (data)=>{
+  //   //   const productNames = data.data.map((name)=> name.title);
+  //   //   console.log(productNames);
+  //   //   return productNames;
+  //   // },
+  // });
   const products = data?.data;
 
   if (isloading || isFetching) {
