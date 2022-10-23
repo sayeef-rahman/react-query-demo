@@ -1,7 +1,6 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { useProductsData } from "../hooks/useProductsData";
-
 
 const RQproductsPage = () => {
   const onSuccess = () => {
@@ -11,7 +10,15 @@ const RQproductsPage = () => {
   const onError = () => {
     console.log("fetching error!");
   };
-  const {isloading, error, isError, data, refetch, isFetching, isLoadingError} = useProductsData(onSuccess, onError);
+  const {
+    isloading,
+    error,
+    isError,
+    data,
+    refetch,
+    isFetching,
+    isLoadingError,
+  } = useProductsData(onSuccess, onError);
   // const {
   //   isloading,
   //   data,
@@ -68,9 +75,7 @@ const RQproductsPage = () => {
             key={id}
             className="my-2 d-flex justify-content-between bg-primary p-4 text-white "
           >
-            <p className="m-0">
-              {id} - {title}
-            </p>
+            <Link to={`/query-products/${id}`} style={{textDecoration:"none", color:"white"}}><p>{id}-{title}</p></Link>
             <p className="m-0">Price - {price} $</p>
           </div>
         );
